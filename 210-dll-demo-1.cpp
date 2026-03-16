@@ -23,8 +23,8 @@ public:
     //constructors
     Goat(){
         age = (rand() % 20) + 1;
-        name = names[rand() % 16];
-        color = colors[rand() % 16];
+        name = names[rand() % SIZE];
+        color = colors[rand() % SIZE];
     }
     Goat(int ag, string nam, string colo){
         age = ag;
@@ -34,7 +34,11 @@ public:
     //setter getters
     string get_name()         {return name;}
     int get_age()             {return age;}
-    string get_color()        {return color;}           
+    string get_color()        {return color;}
+    bool operator==(const Goat& other) const {
+        return name == other.name && age == other.age && color == other.color;
+    }
+    bool operator!=(const Goat& other) const { return !(*this == other); }
 };
 
 class DoublyLinkedList {
@@ -110,29 +114,6 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(Goat value) {
-        if (!head) return; // Empty list
-
-        Node* temp = head;
-        while (temp && temp->data != value)
-            temp = temp->next;
-
-        if (!temp) return; // Value not found
-
-        if (temp->prev) {
-            temp->prev->next = temp->next;
-        } else {
-            head = temp->next; // Deleting the head
-        }
-
-        if (temp->next) {
-            temp->next->prev = temp->prev;
-        } else {
-            tail = temp->prev; // Deleting the tail
-        }
-
-        delete temp;
-    }
 
     void print() {
         Node* current = head;
@@ -169,11 +150,14 @@ public:
 
 // Driver program
 int main() {
+    srand(time(0));
     DoublyLinkedList list;
     int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
-    for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
+    for (int i = 0; i < size; ++i) {
+        Goat temp;
+        list.push_back(temp);
+    }
     cout << "List forward: ";
     list.print();
 
