@@ -160,10 +160,10 @@ int main() {
         Goat temp;
         list.push_back(temp);
     }
-    cout << "List forward: ";
+    cout << "List forward: \n";
     list.print();
 
-    cout << "List backward: ";
+    cout << "List backward: \n";
     list.print_reverse();
 
    
