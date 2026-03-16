@@ -34,11 +34,7 @@ public:
     //setter getters
     string get_name()         {return name;}
     int get_age()             {return age;}
-    string get_color()        {return color;}
-    bool operator==(const Goat& other) const {
-        return name == other.name && age == other.age && color == other.color;
-    }
-    bool operator!=(const Goat& other) const { return !(*this == other); }
+    string get_color()        {return color;}           
 };
 
 class DoublyLinkedList {
@@ -117,7 +113,10 @@ public:
 
     void print() {
         Node* current = head;
-        if (!current) return;
+        if (!current){
+            cout << "List is empty.";
+            return;
+        } 
         while (current) {
             Goat goat = current->data;
             cout << goat.get_name() << " (" << goat.get_color() << ", ";
@@ -129,7 +128,10 @@ public:
 
     void print_reverse() {
         Node* current = tail;
-        if (!current) return;
+        if (!current){
+            cout << "List is empty.";
+            return;
+        } 
         while (current) {
             Goat goat = current->data;
             cout << goat.get_name() << " (" << goat.get_color() << ", ";
