@@ -31,6 +31,10 @@ public:
         name = nam;
         color = colo;
     }
+    //setter getters
+    string get_name()         {return name;}
+    int get_age()             {return age;}
+    string get_color()        {return color;}           
 };
 
 class DoublyLinkedList {
@@ -134,7 +138,9 @@ public:
         Node* current = head;
         if (!current) return;
         while (current) {
-            cout << current->data << " ";
+            Goat goat = current->data;
+            cout << goat.get_name() << " (" << goat.get_color() << ", ";
+            cout << goat.get_age() << ")" << endl;
             current = current->next;
         }
         cout << endl;
@@ -144,7 +150,9 @@ public:
         Node* current = tail;
         if (!current) return;
         while (current) {
-            cout << current->data << " ";
+            Goat goat = current->data;
+            cout << goat.get_name() << " (" << goat.get_color() << ", ";
+            cout << goat.get_age() << ")" << endl;
             current = current->prev;
         }
         cout << endl;
@@ -172,10 +180,6 @@ int main() {
     cout << "List backward: ";
     list.print_reverse();
 
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
-    list.print();
-
+   
     return 0;
 }
